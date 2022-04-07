@@ -1,0 +1,46 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Mafsummary">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Mafsummary" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw summary plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_mafsummary/plot_mafsummary.R </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="MAF file name" eletype="textbox"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_mafsummary/TCGA.LAML.mutect.27f42413-6d8f-401f-9d07-d019def8939e.DR-10.0.somatic.maf"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="10"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="top" isacquire="1" cmdparam="--top"  desc="how many top genes to be drawn. defaults to 10." eletype="textbox"  isshow="1" whitespace="1" default="10"></param>
+			<param name="rmOutlier" isacquire="1" cmdparam="--rmOutlier"  desc="If TRUE removes outlier from boxplot." eletype="select"  isshow="1" whitespace="1" default="TRUE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="dashboard" isacquire="1" cmdparam="--dashboard"  desc="If FALSE plots simple summary instead of dashboard style." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="titvRaw" isacquire="1" cmdparam="--titvRaw"  desc="TRUE. If false instead of raw counts" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="log_scale" isacquire="1" cmdparam="--log_scale"  desc="FALSE. If TRUE log10 transforms Variant Classification" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="addStat" isacquire="1" cmdparam="--addStat"  desc="Can be either mean or median. Default NULL." eletype="select"  isshow="1" whitespace="1" default="NULL">NULL=NULL,mean=mean,median=median</param>
+			<param name="showBarcodes" isacquire="1" cmdparam="--showBarcodes"  desc="include sample names in the top bar plot." eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="fs" isacquire="1" cmdparam="--fs"  desc="base size for text. Default 1" eletype="textbox"  isshow="1" whitespace="1" default="1"></param>
+			<param name="palette" isacquire="1" cmdparam="--palette"  desc="color palette" eletype="select"  isshow="1" whitespace="1" default="npg">npg=npg,aaas=aaas,nejm=nejm,lancet=lancet,jama=jama,jco=jco,ucscgb=ucscgb,d3=d3,locuszoom=locuszoom,igv=igv,uchicago=uchicago,startrek=startrek,tron=tron,futurama=futurama,rickandmorty=rickandmorty,simpsons=simpsons</param>
+			<param name="mainTitleSize" isacquire="1" cmdparam="--mainTitleSize"  desc="font size for title and subtitle. Default 1.0" eletype="textbox"  isshow="1" whitespace="1" default="1"></param>
+			<param name="subTitleSize" isacquire="1" cmdparam="--subTitleSize"  desc="font size for title and subtitle. Default 0.8" eletype="textbox"  isshow="1" whitespace="1" default="0.8"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_mafsummary.png</param>
+			
+		</outputs>
+		<reference> http://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html </reference>
+		<help> input format is MAF [https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/] </help>
+	</module>
+</pipeline>
+
+

@@ -1,0 +1,64 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_bar6">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_bar6" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw a bar plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_bar/plot_bar.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="Dataset file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_bar/example_input_bar.txt"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="6"></param>
+			<param name="title" isacquire="1" cmdparam="--title"  desc="Main title" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="title_size" isacquire="1" cmdparam="--title_size"  desc="Main title font size" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="x_title" isacquire="1" cmdparam="--x_title"  desc="Title of x axis" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="x_title_size" isacquire="1" cmdparam="--x_title_size"  desc="Title size for x axis" eletype="textbox"  isshow="1" whitespace="1" default="15"></param>
+			<param name="x_text_size" isacquire="1" cmdparam="--x_text_size"  desc="Title size for x axis" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="x_text_angle" isacquire="1" cmdparam="--x_text_angle"  desc="Text angle for x axis" eletype="select"  isshow="1" whitespace="1" default="0">0=0,15=15,30=30,45=45,60=60,90=90</param>
+			<param name="y_title" isacquire="1" cmdparam="--y_title"  desc="Title of y axis" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="y_title_size" isacquire="1" cmdparam="--y_title_size"  desc="Title size for y axis" eletype="textbox"  isshow="1" whitespace="1" default="15"></param>
+			<param name="y_text_size" isacquire="1" cmdparam="--y_text_size"  desc="Text size for y axis" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="y_text_angle" isacquire="1" cmdparam="--y_text_angle"  desc="Text angle for y axis" eletype="select"  isshow="1" whitespace="1" default="0">0=0,15=15,30=30,45=45,60=60,90=90</param>
+			<param name="palette" isacquire="1" cmdparam="--palette"  desc="Palette. see help for detial. " eletype="select"  isshow="1" whitespace="1" default="npg">npg=npg,aaas=aaas,nejm=nejm,lancet=lancet,jama=jama,jco=jco,ucscgb=ucscgb,d3=d3,locuszoom=locuszoom,igv=igv,uchicago=uchicago,startrek=startrek,tron=tron,futurama=futurama,rickandmorty=rickandmorty,simpsons=simpsons</param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">output_plotbar.png</param>
+			
+		</outputs>
+		<reference> https://cran.r-project.org/web/packages/ggplot2/index.html </reference>
+		<help> The input file format is : category   value.
+The value must be numeric.
+The palettes are derived from package ggsci :
+npg:  Nature Publishing Group
+aaas:  American Association for the Advancement of Science
+nejm:  The New England Journal of Medicine
+lancet:  Lancet Oncology
+jama:  The Journal of the American Medical Association
+jco:  Journal of Clinical Oncology
+ucscgb:  The UCSCGB palette is from the colors used by UCSC Genome Browser for representing chromosomes
+d3:  The D3 palette is from the categorical colors used by D3.js (version 3.x and before).
+locuszoom:  The LocusZoom palette is based on the colors used by LocusZoom
+igv:  The IGV palette is from the colors used by Integrative Genomics Viewer for representing chromosomes
+uchicago:  The UChicago palette is based on the colors used by the University of Chicago
+startrek:  This palette is inspired by the (uniform) colors in Star Trek
+tron:  This palette is inspired by the colors used in Tron Legacy
+futurama:  This palette is inspired by the colors used in the TV show Futurama
+rickandmorty:  This palette is inspired by the colors used in the TV show Rick and Morty
+simpsons:  This palette is inspired by the colors used in the TV show The Simpsons </help>
+	</module>
+</pipeline>
+
+

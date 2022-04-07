@@ -1,0 +1,79 @@
+{
+    "command": {
+        "cmd": "command"
+    },
+    "title": "SeqLogo",
+    "options": [
+        {
+            "help": "datasets",
+            "range": null,
+            "name": "File",
+            "add_option_in_cmd": true,
+            "required": true,
+            "type": "file_textarea",
+            "cmdparam": "--file",
+            "default": "path to example file"
+        },
+        {
+            "result_files": [
+                {
+                    "file_name": "${output}_plot_seqlogo.png",
+                    "show_in_page": true
+                },
+                {
+                    "file_name": "${output}_plot_seqlogo.svg",
+                    "show_in_page": false
+                },
+                {
+                    "file_name": "${output}_plot_seqlogo.pdf",
+                    "show_in_page": false
+                }
+            ],
+            "type": "output",
+            "cmdparam": "--outdir",
+            "name": "output",
+            "default": "run_output"
+        },
+        {
+            "help": "width of the canvas",
+            "default": 8.0,
+            "name": "width",
+            "add_option_in_cmd": true,
+            "required": true,
+            "type": "number",
+            "range": {
+                "min": 0.0,
+                "max": 20.0
+            },
+            "cmdparam": "--width"
+        },
+        {
+            "help": "help",
+            "default": null,
+            "name": "height",
+            "add_option_in_cmd": true,
+            "required": true,
+            "type": "number",
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "cmdparam": "--height"
+        }
+    ],
+    "config_version": "0.1",
+    "reference": [
+        "https://cran.r-project.org/web/packages/ggseqlogo/index.html",
+        "https://github.com/omarwagih/ggseqlogo"
+    ],
+    "email": "zhengxinchang@big.ac.cn",
+    "description": "Sequence logos plot for DNA sequence alignments.",
+    "program_type": "visualization",
+    "resource": {
+        "is_submit_to_queue": false,
+        "ppn": 1,
+        "mem": 10
+    },
+    "author": "zhengxinchang",
+    "manual": "\n\n\n\n"
+}

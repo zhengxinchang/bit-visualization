@@ -1,0 +1,194 @@
+{
+    "author": "zhengxinchang",
+    "command": {
+        "cmd": "/bit/newVersionUnits/plot_wordcloud/plot_wordcloud.r"
+    },
+    "config_version": "0.1",
+    "description": "Functionality to create pretty word clouds",
+    "email": "zhengxinchang@big.ac.cn",
+    "manual": "Due to the limiation of the 'wordcloud' package, only english letters are supported.",
+    "options": [
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--file",
+            "default": "path to example file",
+            "help": "datasets",
+            "name": "File",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "cmdparam": "--outdir",
+            "default": null,
+            "name": "output",
+            "result_files": [
+                {
+                    "file_name": "${output}_plot_seqlogo.png",
+                    "show_in_page": true
+                },
+                {
+                    "file_name": "${output}_plot_seqlogo.svg",
+                    "show_in_page": false
+                },
+                {
+                    "file_name": "${output}_plot_seqlogo.pdf",
+                    "show_in_page": false
+                }
+            ],
+            "type": "output"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--width",
+            "default": 6.0,
+            "help": "width of the canvas",
+            "name": "width",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--height",
+            "default": 6.0,
+            "help": "height of the canvas",
+            "name": "height",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--palette",
+            "default": "npg",
+            "help": "palette used in the plot",
+            "name": "palette",
+            "range": [
+                {
+                    "Nature Publishing Group": "npg"
+                },
+                {
+                    "American Association for the Advancement of Science": "aaas"
+                },
+                {
+                    "The New England Journal of Medicine": "nejm"
+                },
+                {
+                    "Lancet Oncology": "lancet"
+                },
+                {
+                    "The Journal of the American Medical Association": "jama"
+                },
+                {
+                    "Journal of Clinical Oncology": "jco"
+                },
+                {
+                    "UCSC Genome Browser": "ucscgb"
+                },
+                {
+                    "D3.js": "d3"
+                },
+                {
+                    "LocusZoom": "locuszoom"
+                },
+                {
+                    "Integrative Genomics Viewer": "igv"
+                },
+                {
+                    "University of Chicago": "uchicago"
+                },
+                {
+                    "Star Trek": "startrek"
+                },
+                {
+                    "Tron Legacy": "tron"
+                },
+                {
+                    "TV show Futurama": "futurama"
+                },
+                {
+                    "TV show Rick and Morty": "rickandmorty"
+                },
+                {
+                    "TV show The Simpsons": "simpsons"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--random.order",
+            "default": "FALSE",
+            "help": "If TRUE the biggest words will be plotted randomly",
+            "name": "words random order",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--min.freq",
+            "default": 3.0,
+            "help": "words with frequency below the threshold will not be plotted",
+            "name": "minimal frequency",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--rot.per",
+            "default": 0.1,
+            "help": "proportion words with 90 degree rotation",
+            "name": "rotate percent",
+            "range": {
+                "max": 1.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--max.words",
+            "default": Infinity,
+            "help": "Maximum number of words to be plotted. least frequent terms dropped",
+            "name": "max words cutoff",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        }
+    ],
+    "program_type": "visualization",
+    "reference": [
+        "https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf",
+        "http://blog.fellstat.com/?cat",
+        "https://cran.r-project.org/web/packages/wordcloud/"
+    ],
+    "resource": {
+        "is_submit_to_queue": false,
+        "mem": 10,
+        "ppn": 1
+    },
+    "title": "wordcloud"
+}

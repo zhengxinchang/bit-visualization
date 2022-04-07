@@ -1,0 +1,97 @@
+{
+    "config_version": "0.1", #程序版本
+    "program_type": "visualization", #  visualization  analysis
+    "author": "zhangsan", 
+    "email": "zhangsan@big.ac.cn",
+    "title": "",
+    "description": "",
+    "command": {
+        "cmd": "/xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_heatmap/plot_heatmap.r" # 不加参数的命令行部分
+    },
+    "resource": {
+        "is_submit_to_queue": false, # 如果是false 则在线运行不提交到队列
+        "ppn": 1,
+        "mem": 10
+    },
+    "reference": ["ref1", "ref2"], 
+    "manual": "" , # \n 分割多行
+    "options": [{
+            "name": "File",
+            "cmdparam": "--file",
+            "type": "file_textarea", # file_textarea,同时提供一个文本上传按钮以及一个textarea, file：只提供文本上传按钮
+            "range": null,
+            "default": null,
+            "help": "",
+            "required": true,
+            "add_option_in_cmd": true
+        }, {
+            "name": "Color",
+            "cmdparam": "--color",
+            "type": "color",
+            "range": null, 
+            "help": "",
+            "default": null,  #16进制， 例如 #abcaff
+            "required": true,
+            "add_option_in_cmd": true
+        }, {
+            "name": "Gene type",
+            "cmdparam": "--gene_type",
+            "type": "select",  #受控词表类
+            "default": "optionA",
+            "range": [{"optionA":"a"}, {"optionB":"b"}, {"optionC":"c"}], # {"optionA":"a"} optionA是展示给用户，a是传递给命令行
+            "help": "",
+            "required": false,
+            "add_option_in_cmd": true
+
+        }, {
+            "name": "isrun",
+            "cmdparam": "--isrun",
+            "type": "select", # 受控词表类
+            "default": "TRUE",
+            "range": [{"TRUE":"TRUE"}, {"FALSE":"FALSE"}],
+            "help": "",
+            "required": false,
+            "add_option_in_cmd": true
+        }, {
+            "name": "name",
+            "cmdparam" "--name",
+            "type": "string", #文本类
+            "range": null,
+            "help": "",
+            "default": null,
+            "required": false,
+            "add_option_in_cmd": true
+        }, {
+            "name": "font_size",
+            "cmdparam" "--font_size",
+            "type": "number", # 数字类
+            "default": 6,
+            "range": { # 数字类对应的取值范围
+                "min": 0, #如果是null，则表示无限制
+                "max": 12 
+            },
+            "help": "",
+            "required": false,
+            "add_option_in_cmd": true
+        }, {
+            "name": "out",
+            "type": "output",
+            "cmdparam" "--outname",
+            "default": "run_output", # 如果不指定，则默认是run_output
+            "result_files": [
+                {
+                    "file_name":"${output}_plot_bar.png",    
+                    "show_in_page": true,
+                },
+                {
+                    "file_name":"${output}_plot_bar.svg",    
+                    "show_in_page": false,
+                },
+                {
+                    "file_name":"${output}_plot_bar.pdf",    
+                    "show_in_page": false,
+                }
+            ],
+        }
+    ],
+}

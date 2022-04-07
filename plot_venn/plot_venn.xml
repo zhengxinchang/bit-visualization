@@ -1,0 +1,76 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Venn">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Venn" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw veen plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_venn/plot_venn.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="input file name" eletype="textbox"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_venn/venn.demodata.txt"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="6"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="6"></param>
+			<param name="palette" isacquire="1" cmdparam="--palette"  desc="color palette" eletype="select"  isshow="1" whitespace="1" default="startrek">npg=npg,aaas=aaas,nejm=nejm,lancet=lancet,jama=jama,jco=jco,ucscgb=ucscgb,d3=d3,locuszoom=locuszoom,igv=igv,uchicago=uchicago,startrek=startrek,tron=tron,futurama=futurama,rickandmorty=rickandmorty,simpsons=simpsons</param>
+			<param name="na" isacquire="1" cmdparam="--na"  desc="Missing value handling method: 'none'" eletype="select"  isshow="1" whitespace="1" default="none">none=none,stop=stop,remove=remove</param>
+			<param name="transparent" isacquire="1" cmdparam="--transparent"  desc="Transparent value 0-1" eletype="textbox"  isshow="1" whitespace="1" default="0.7"></param>
+			<param name="main" isacquire="1" cmdparam="--main"  desc="Character giving the main title of the diagram" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="sub" isacquire="1" cmdparam="--sub"  desc="Character giving the subtitle of the diagram" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="main.cex" isacquire="1" cmdparam="--main.cex"  desc="Number giving the cex (font size of the main title" eletype="textbox"  isshow="1" whitespace="1" default="1"></param>
+			<param name="sub.cex" isacquire="1" cmdparam="--sub.cex"  desc="Number giving the cex (font size of the subtitle" eletype="textbox"  isshow="1" whitespace="1" default="1"></param>
+			<param name="force.unique" isacquire="1" cmdparam="--force.unique"  desc="Logical specifying whether to use only unique elements in each item of the input list or use all elements. Defaults to FALSE" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="print.mode" isacquire="1" cmdparam="--print.mode"  desc="Can be either 'raw' or 'percent'. This is the format that the numbers will be printed in. Can pass in a vector with the second element being printed under the first" eletype="select"  isshow="1" whitespace="1" default="raw">raw=raw,percent=percent</param>
+			<param name="sigdigs" isacquire="1" cmdparam="--sigdigs"  desc="If one of the elements in print.mode is 'percent'" eletype="textbox"  isshow="1" whitespace="1" default="2"></param>
+			<param name="labelSize" isacquire="1" cmdparam="--labelSize"  desc="Label Size" eletype="textbox"  isshow="1" whitespace="1" default="2"></param>
+			<param name="categoryLabelSize" isacquire="1" cmdparam="--categoryLabelSize"  desc="Category label Size" eletype="textbox"  isshow="1" whitespace="1" default="2"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_venn.png</param>
+			
+		</outputs>
+		<reference> https://cran.r-project.org/web/packages/VennDiagram/index.html </reference>
+		<help> input format is a matrix like this:
+ A	B	C	D	E #header
+ j	b	o	m	g
+ u	e	x	j	t
+ r	m	x	m	h
+ d	u	v	n	x
+ f	p	b	m	o
+ n	j	o	j	q
+ j	h	r	l	q
+ e	g	v	g	a
+ h	j	g	m	a
+ w	g	o	l	k
+---------------------------------------------
+The palettes are derived from package ggsci :
+npg:   Nature Publishing Group
+aaas:  American Association for the Advancement of Science
+nejm:  The New England Journal of Medicine
+lancet:  Lancet Oncology
+jama:  The Journal of the American Medical Association
+jco:  Journal of Clinical Oncology
+ucscgb:  The UCSCGB palette is from the colors used by UCSC Genome Browser for representing chromosomes
+d3:  The D3 palette is from the categorical colors used by D3.js (version 3.x and before).
+locuszoom:  The LocusZoom palette is based on the colors used by LocusZoom
+igv:  The IGV palette is from the colors used by Integrative Genomics Viewer for representing chromosomes
+uchicago:  The UChicago palette is based on the colors used by the University of Chicago
+startrek:  This palette is inspired by the (uniform) colors in Star Trek
+tron:  This palette is inspired by the colors used in Tron Legacy
+futurama:  This palette is inspired by the colors used in the TV show Futurama
+rickandmorty:  This palette is inspired by the colors used in the TV show Rick and Morty
+simpsons:  This palette is inspired by the colors used in the TV show The Simpsons </help>
+	</module>
+</pipeline>
+
+

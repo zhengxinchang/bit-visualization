@@ -1,0 +1,46 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Forestplot">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Forestplot" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw a Histgram plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_forest/plot_forestplot.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="Dataset file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_forest/input_forest_plot.txt"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="6"></param>
+			<param name="zero" isacquire="1" cmdparam="--zero"  desc="x-axis coordinate for zero line. If you provide a vector of length 2 it will print a rectangle instead of just a line. If you provide NA the line is supressed." eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="xlog" isacquire="1" cmdparam="--xlog"  desc="If TRUE" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="boxsize" isacquire="1" cmdparam="--boxsize"  desc="Override the default box size based on precision" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="linetype" isacquire="1" cmdparam="--linetype"  desc="line type of error bar" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="linewidth" isacquire="1" cmdparam="--linewidth"  desc="line width of error bar" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="ci.vertices.height" isacquire="1" cmdparam="--ci.vertices.height"  desc="The height hoft the vertices. Defaults to npc units corresponding to 10% of the row height. Note that the arrows correspond to the vertices heights." eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="xlab" isacquire="1" cmdparam="--xlab"  desc="Title size for y axis" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">output_plotforest.png</param>
+			
+		</outputs>
+		<reference> https://cran.r-project.org/web/packages/forestplot/index.html </reference>
+		<help> The input file format example:
+Comparsion      Median  Interquartile_ranges    Diff_median     Diff_down       Diff_top #header
+Model1 vs. Model2       1.22    (0.13 ~ 2.14)   1.22    0.13    2.14
+Model1 vs. Model3       1.7     (0.83 ~ 2.49)   1.7     0.83    2.49
+--------------------------------------------- </help>
+	</module>
+</pipeline>
+
+

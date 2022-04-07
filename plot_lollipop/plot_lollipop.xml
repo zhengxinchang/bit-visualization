@@ -1,0 +1,45 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Lollipop">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Lollipop" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw iollipop plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_lollipop/plot_lollipop.R </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="MAF file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_mafsummary/TCGA.LAML.mutect.27f42413-6d8f-401f-9d07-d019def8939e.DR-10.0.somatic.maf"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="10"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="gene" isacquire="1" cmdparam="--gene"  desc="output file name" eletype="textbox"  isshow="1" whitespace="1" default="FLT3"></param>
+			<param name="showMutationRate" isacquire="1" cmdparam="--showMutationRate"  desc="Whether to show the somatic mutation rate on the title. Default TRUE" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="showDomainLabel" isacquire="1" cmdparam="--showDomainLabel"  desc="Label domains within the plot. Default TRUE. If FALSE they will be annotated in legend." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="printCount" isacquire="1" cmdparam="--printCount"  desc="If TRUE" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="titleMainSize" isacquire="1" cmdparam="--titleMainSize"  desc="font size for title Default 1.2" eletype="textbox"  isshow="1" whitespace="1" default="1.2"></param>
+			<param name="titleSubSize" isacquire="1" cmdparam="--titleSubSize"  desc="font size for subtitle. Default 1" eletype="textbox"  isshow="1" whitespace="1" default="1"></param>
+			<param name="pointSize" isacquire="1" cmdparam="--pointSize"  desc="size of lollipop heads. Default 1.5" eletype="textbox"  isshow="1" whitespace="1" default="1.5"></param>
+			<param name="defaultYaxis" isacquire="1" cmdparam="--defaultYaxis"  desc="If FALSE" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="palette" isacquire="1" cmdparam="--palette"  desc="palette for plot" eletype="select"  isshow="1" whitespace="1" default="npg">npg=npg,aaas=aaas,nejm=nejm,lancet=lancet,jama=jama,jco=jco,ucscgb=ucscgb,d3=d3,locuszoom=locuszoom,igv=igv,uchicago=uchicago,startrek=startrek,tron=tron,futurama=futurama,rickandmorty=rickandmorty,simpsons=simpsons</param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_lollipop.png</param>
+			
+		</outputs>
+		<reference> http://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html </reference>
+		<help> input format is MAF [https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/]
+the gene to plot lollipop plot must be included in MAF file. </help>
+	</module>
+</pipeline>
+
+

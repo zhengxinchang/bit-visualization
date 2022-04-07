@@ -1,0 +1,47 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Comutation">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Comutation" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw Comutation plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_comutation/plot_comutation.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="MAF file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_mafsummary/TCGA.LAML.mutect.27f42413-6d8f-401f-9d07-d019def8939e.DR-10.0.somatic.maf"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="top" isacquire="1" cmdparam="--top"  desc="how many top genes to be drawn. defaults to 10." eletype="textbox"  isshow="1" whitespace="1" default="10"></param>
+			<param name="pval_up" isacquire="1" cmdparam="--pval_up"  desc="p value up threshold [0.1]" eletype="textbox"  isshow="1" whitespace="1" default="0.1"></param>
+			<param name="pval_down" isacquire="1" cmdparam="--pval_down"  desc="p value up threshold [0.05]" eletype="textbox"  isshow="1" whitespace="1" default="0.05"></param>
+			<param name="returnAll" isacquire="1" cmdparam="--returnAll"  desc="If TRUE returns test statistics for all pair of tested genes. Default FALSE" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="fontSize" isacquire="1" cmdparam="--fontSize"  desc="cex for gene names. Default 0.8" eletype="textbox"  isshow="1" whitespace="1" default="0.8"></param>
+			<param name="showSigSymbols" isacquire="1" cmdparam="--showSigSymbols"  desc="Default TRUE. Heighlight significant pairs" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="showCounts" isacquire="1" cmdparam="--showCounts"  desc="Default TRUE. Include number of events in the plot" eletype="textbox"  isshow="1" whitespace="1" default="TRUE"></param>
+			<param name="countStats" isacquire="1" cmdparam="--countStats"  desc="Can be either mean or median. Default NULL." eletype="select"  isshow="1" whitespace="1" default="all">all=all,sig=sig</param>
+			<param name="countType" isacquire="1" cmdparam="--countType"  desc="Default 'cooccur'. Can be 'all'" eletype="select"  isshow="1" whitespace="1" default="cooccur">cooccur=cooccur,mutexcl=mutexcl</param>
+			<param name="countsFontSize" isacquire="1" cmdparam="--countsFontSize"  desc="Default 0.8" eletype="textbox"  isshow="1" whitespace="1" default="0.8"></param>
+			<param name="countsFontColor" isacquire="1" cmdparam="--countsFontColor"  desc="Default 'black'" eletype="textbox"  isshow="1" whitespace="1" default="black"></param>
+			<param name="colPal" isacquire="1" cmdparam="--colPal"  desc="font size for title and subtitle. Default 1.0" eletype="textbox"  isshow="1" whitespace="1" default="BrBG"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_comutation.png</param>
+			
+		</outputs>
+		<reference> http://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html </reference>
+		<help> input format is MAF [https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/] </help>
+	</module>
+</pipeline>
+
+

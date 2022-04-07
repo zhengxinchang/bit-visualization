@@ -1,0 +1,70 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Upset">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Upset" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw Upset plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_upset/plot_upset.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="input file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_upset/upset.demodata.txt"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="4"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="4"></param>
+			<param name="nsets" isacquire="1" cmdparam="--nsets"  desc="Number of sets to look at" eletype="textbox"  isshow="1" whitespace="1" default="5"></param>
+			<param name="nintersects" isacquire="1" cmdparam="--nintersects"  desc="Number of intersections to plot. If set to NA" eletype="textbox"  isshow="1" whitespace="1" default="40"></param>
+			<param name="keep.order" isacquire="1" cmdparam="--keep.order"  desc="Keep sets in the order entered using the sets parameter. The default is FALSE" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="matrix.color" isacquire="1" cmdparam="--matrix.color"  desc="Color of the intersection points eg. gray or #F23FFF" eletype="textbox"  isshow="1" whitespace="1" default="gray23"></param>
+			<param name="main.bar.color" isacquire="1" cmdparam="--main.bar.color"  desc="Color of the main bar plot eg. darkblue or #F23FFF" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="mainbar.y.label" isacquire="1" cmdparam="--mainbar.y.label"  desc="The y-axis label of the intersection size bar plot" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="mainbar.y.max" isacquire="1" cmdparam="--mainbar.y.max"  desc="The maximum y value of the intersection size bar plot scale. May be useful when aligning multiple UpSet plots horizontally." eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="sets.x.label" isacquire="1" cmdparam="--sets.x.label"  desc="The x-axis label of the set size bar plot" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="point.size" isacquire="1" cmdparam="--point.size"  desc="Size of points in matrix plot" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="line.size" isacquire="1" cmdparam="--line.size"  desc="Width of lines in matrix plot" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="att.pos" isacquire="1" cmdparam="--att.pos"  desc="Position of attribute plot. If NULL or 'bottom' the plot will be at below UpSet plot. If 'top' it will be above UpSet plot" eletype="select"  isshow="1" whitespace="1" default="bottom">bottom=bottom,top=top</param>
+			<param name="att.color" isacquire="1" cmdparam="--att.color"  desc="Color of attribute histogram bins or scatterplot points for unqueried data represented by main bars. Default set to color of main bars." eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="order.by" isacquire="1" cmdparam="--order.by"  desc="How the intersections in the matrix should be ordered by. Options include frequency (entered as 'freq'" eletype="select"  isshow="1" whitespace="1" default="freq">freq=freq,degree=degree</param>
+			<param name="decreasing" isacquire="1" cmdparam="--decreasing"  desc="How the variables in order. by should be ordered. 'freq' is decreasing (greatest to least and 'degree' is increasing (least to greatest" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="show.numbers" isacquire="1" cmdparam="--show.numbers"  desc="Show numbers of intersection sizes above bars" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="number.angles" isacquire="1" cmdparam="--number.angles"  desc="The angle of the numbers atop the intersection size bars" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="matrix.dot.alpha" isacquire="1" cmdparam="--matrix.dot.alpha"  desc="Transparency of the empty intersections points in the matrix" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="text.scale" isacquire="1" cmdparam="--text.scale"  desc="Numeric" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="scale.sets" isacquire="1" cmdparam="--scale.sets"  desc="The scale to be used for the set sizes. Options: 'identity'" eletype="select"  isshow="1" whitespace="1" default="identity">identity=identity,log10=log10,log2=log2</param>
+			<param name="sets.bar.color" isacquire="1" cmdparam="--sets.bar.color"  desc="Color of set size bar plot" eletype="textbox"  isshow="1" whitespace="1" default="black"></param>
+			<param name="set_size.angles" isacquire="1" cmdparam="--set_size.angles"  desc="Numeric" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="set_size.numbers_size" isacquire="1" cmdparam="--set_size.numbers_size"  desc="If set_size.show is TRUE" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="set_size.show" isacquire="1" cmdparam="--set_size.show"  desc="Logical" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_upset.png</param>
+			
+		</outputs>
+		<reference> https://cran.r-project.org/web/packages/UpSetR/ </reference>
+		<help> input format is a matrix like this:
+ A	B	C	D	E #header
+ j	b	o	m	g
+ u	e	x	j	t
+ r	m	x	m	h
+ d	u	v	n	x
+ f	p	b	m	o
+ n	j	o	j	q
+ j	h	r	l	q
+ e	g	v	g	a
+ h	j	g	m	a
+ w	g	o	l	k
+--------------------------------------------- </help>
+	</module>
+</pipeline>
+
+

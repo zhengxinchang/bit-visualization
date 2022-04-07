@@ -1,0 +1,245 @@
+{
+    "author": "zhengxinchang",
+    "command": {
+        "cmd": "Rscript /bit/newVersionUnits/plot_seqlogo/plot_seqlogo.r"
+    },
+    "config_version": "0.1",
+    "description": "Sequence logos plot for DNA sequence alignments.",
+    "email": "zhengxinchang@big.ac.cn",
+    "manual": "Plots sequence logo as a layer on ggplot",
+    "options": [
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--file",
+            "default": "path to example file",
+            "help": "datasets",
+            "name": "File",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "cmdparam": "--outdir",
+            "default": null,
+            "name": "output",
+            "result_files": [
+                {
+                    "file_name": "${output}_plot_seqlogo.png",
+                    "show_in_page": true
+                },
+                {
+                    "file_name": "${output}_plot_seqlogo.svg",
+                    "show_in_page": false
+                },
+                {
+                    "file_name": "${output}_plot_seqlogo.pdf",
+                    "show_in_page": false
+                }
+            ],
+            "type": "output"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--width",
+            "default": 8.0,
+            "help": "width of the canvas",
+            "name": "width",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--height",
+            "default": 6.0,
+            "help": "height of the canvas",
+            "name": "height",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--method",
+            "default": "bits",
+            "help": "Height method, can be one of \"bits\" or \"probability\" (default: \"bits\")",
+            "name": "methods",
+            "range": [
+                {
+                    "probability": "probability"
+                },
+                {
+                    "bits": "bits"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "\"--seq_type\"",
+            "default": "auto",
+            "help": "Sequence type, can be one of \"auto\", \"aa\", \"dna\", \"rna\" or \"other\" (default: \"auto\", sequence type is automatically guessed)",
+            "name": "sequence type",
+            "range": [
+                {
+                    "automatic guess": "auto"
+                },
+                {
+                    "amino acid": "aa"
+                },
+                {
+                    "DNA": "dna"
+                },
+                {
+                    "RNA": "rna"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--font",
+            "default": "helvetica_regular",
+            "help": "Name of font.",
+            "name": "font",
+            "range": [
+                {
+                    "helvetica regular": "helvetica_regular"
+                },
+                {
+                    "helvetica bold": "helvetica_bold"
+                },
+                {
+                    "helvetica light": "helvetica_light"
+                },
+                {
+                    "roboto medium": "roboto_medium"
+                },
+                {
+                    "roboto bold": "roboto_bold"
+                },
+                {
+                    "roboto regular": "roboto_regular"
+                },
+                {
+                    "akrobat bold": "akrobat_bold"
+                },
+                {
+                    "akrobat regular": "akrobat_regular"
+                },
+                {
+                    "roboto slab_bold": "roboto_slab_bold"
+                },
+                {
+                    "roboto slab_regular": "roboto_slab_regular"
+                },
+                {
+                    "roboto slab_light": "roboto_slab_light"
+                },
+                {
+                    "xkcd regular": "xkcd_regular"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--stack_width",
+            "default": 0.95,
+            "help": "Width of letter stack between 0 and 1 (",
+            "name": "stack_width",
+            "range": {
+                "max": 1.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--rev_stack_order",
+            "default": "FALSE",
+            "help": "If TRUE, order of letter stack is reversed (default: FALSE)",
+            "name": "reverse the letter stack",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--na_col",
+            "default": "grey20",
+            "help": "Color for letters missing in color scheme (default: \"grey20\")",
+            "name": "Color for missing values",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--col_scheme",
+            "default": "auto",
+            "help": "Color scheme applied to the sequence logo.",
+            "name": "Color Scheme",
+            "range": [
+                {
+                    "auto": "auto"
+                },
+                {
+                    "chemistry": "chemistry"
+                },
+                {
+                    "chemistry2": "chemistry2"
+                },
+                {
+                    "hydrophobicity": "hydrophobicity"
+                },
+                {
+                    "nucleotide": "nucleotide"
+                },
+                {
+                    "nucleotide2": "nucleotide2"
+                },
+                {
+                    "base_pairing": "base_pairing"
+                },
+                {
+                    "clustalx": "clustalx"
+                },
+                {
+                    "taylor": "taylor"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        }
+    ],
+    "program_type": "visualization",
+    "reference": [
+        "https://cran.r-project.org/web/packages/ggseqlogo/index.html",
+        "https://github.com/omarwagih/ggseqlogo",
+        "Wagih, Omar. ggseqlogo: a versatile R package for drawing sequence logos. Bioinformatics (2017). https://doi.org/10.1093/bioinformatics/btx469"
+    ],
+    "resource": {
+        "is_submit_to_queue": false,
+        "mem": 10,
+        "ppn": 1
+    },
+    "title": "SeqLogo"
+}

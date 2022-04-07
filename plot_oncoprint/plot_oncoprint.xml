@@ -1,0 +1,58 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Oncoprint2">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Oncoprint2" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw Oncoprint plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_oncoprint/plot_oncoprint.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="MAF file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_oncoprint/TCGA.LAML.mutect.27f42413-6d8f-401f-9d07-d019def8939e.DR-10.0.somatic.maf"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="10"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="6"></param>
+			<param name="top" isacquire="1" cmdparam="--top"  desc="how many top genes to be drawn. defaults to 20." eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="altered" isacquire="1" cmdparam="--altered"  desc="Chooses top genes based on muatation status. If TRUE chooses top genes based alterations (CNV or mutation." eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="drawRowBar" isacquire="1" cmdparam="--drawRowBar"  desc="logical plots barplot for each gene" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="drawColBar" isacquire="1" cmdparam="--drawColBar"  desc="logical plots barplot for each sample" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="includeColBarCN" isacquire="1" cmdparam="--includeColBarCN"  desc="Whether to include CN in column bar plot" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="draw_titv" isacquire="1" cmdparam="--draw_titv"  desc="logical Includes TiTv plot" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="logColBar" isacquire="1" cmdparam="--logColBar"  desc="Plot top bar plot on log10 scale" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="showTumorSampleBarcodes" isacquire="1" cmdparam="--showTumorSampleBarcodes"  desc="logical to include sample names." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="removeNonMutated" isacquire="1" cmdparam="--removeNonMutated"  desc="Logical. If TRUE removes samples with no mutations in the oncoplot for better visualization" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="fill" isacquire="1" cmdparam="--fill"  desc="If TRUE draws genes and samples as blank grids even when they are not altered." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="cohortSize" isacquire="1" cmdparam="--cohortSize"  desc="Number of sequenced samples in the cohort. Default all samples from Cohort. You can manually specify the cohort size" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="palette" isacquire="1" cmdparam="--palette"  desc="color palette" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="sortByMutation" isacquire="1" cmdparam="--sortByMutation"  desc="Force sort matrix according mutations. Helpful in case of MAF was read along with copy number data" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="keepGeneOrder" isacquire="1" cmdparam="--keepGeneOrder"  desc="logical whether to keep order of given genes. Default FALSE" eletype="select"  isshow="1" whitespace="1" default="FALSE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="sepwd_genes" isacquire="1" cmdparam="--sepwd_genes"  desc="sepreate width of genes" eletype="textbox"  isshow="1" whitespace="1" default="0.5"></param>
+			<param name="sepwd_samples" isacquire="1" cmdparam="--sepwd_samples"  desc="sepreate width of samples" eletype="textbox"  isshow="1" whitespace="1" default="0.5"></param>
+			<param name="fontSize" isacquire="1" cmdparam="--fontSize"  desc="font size for gene names. Default 0.8." eletype="textbox"  isshow="1" whitespace="1" default="0.8"></param>
+			<param name="SampleNamefontSize" isacquire="1" cmdparam="--SampleNamefontSize"  desc="font size for sample names. Default 1" eletype="textbox"  isshow="1" whitespace="1" default="1"></param>
+			<param name="showTitle" isacquire="1" cmdparam="--showTitle"  desc="individual cell width in points. If left as NULL" eletype="select"  isshow="1" whitespace="1" default="TRUE">FALSE=FALSE,TRUE=TRUE</param>
+			<param name="titleFontSize" isacquire="1" cmdparam="--titleFontSize"  desc="font size for title." eletype="textbox"  isshow="1" whitespace="1" default="1.5"></param>
+			<param name="legendFontSize" isacquire="1" cmdparam="--legendFontSize"  desc="font size for legend." eletype="textbox"  isshow="1" whitespace="1" default="1.2"></param>
+			<param name="bgCol" isacquire="1" cmdparam="--bgCol"  desc="Background grid color for wild-type (not-mutated samples. Default gray - '#CCCCCC'" eletype="textbox"  isshow="1" whitespace="1" default="gray"></param>
+			<param name="borderCol" isacquire="1" cmdparam="--borderCol"  desc="border grid color (not-mutated samples. Default 'white'." eletype="textbox"  isshow="1" whitespace="1" default="white"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_oncoplot.png</param>
+			
+		</outputs>
+		<reference> http://bioconductor.org/packages/release/bioc/vignettes/maftools/inst/doc/maftools.html </reference>
+		<help> input format is MAF [https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/] </help>
+	</module>
+</pipeline>
+
+

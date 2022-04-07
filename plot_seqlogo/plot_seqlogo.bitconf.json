@@ -1,0 +1,19 @@
+{
+    "config_version": null,
+    "program_type": null,
+    "author": null,
+    "email": null,
+    "title": null,
+    "description": null,
+    "command": {
+        "cmd": null
+    },
+    "resource": {
+        "is_submit_to_queue": null,
+        "ppn": null,
+        "mem": null
+    },
+    "reference": [],
+    "manual": null,
+    "options": []
+}

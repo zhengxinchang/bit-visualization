@@ -1,0 +1,102 @@
+{
+    "config_version": "0.1",
+    "program_type": "visualization",
+    "author": "zhangsan",
+    "email": "zhangsan@big.ac.cn",
+    "title": "Test Program",
+    "description": "aaaaa",
+    "command": {
+        "cmd": "\"/xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_heatmap/plot_heatmap.r\""
+    },
+    "resource": {
+        "is_submit_to_queue": true,
+        "ppn": "1",
+        "mem": "10"
+    },
+    "reference": [
+        "ccc",
+        "ddd"
+    ],
+    "manual": "\nxz\nxxx\nfff\nddd\n\n\ndf",
+    "options": [
+        {
+            "name": "\"File\"",
+            "cmdparam": "\"--file\"",
+            "type": "file_textarea",
+            "range": "null",
+            "default": null,
+            "help": "\"\"",
+            "required": true,
+            "add_option_in_cmd": "true"
+        },
+        {
+            "name": "Gene type",
+            "cmdparam": "--gene_type",
+            "type": "select",
+            "default": "OptionA,",
+            "range": [
+                {
+                    "OptionA": "a"
+                },
+                {
+                    "OptionB": "b"
+                },
+                {
+                    "OptionC": "c"
+                }
+            ],
+            "help": "",
+            "required": null,
+            "add_option_in_cmd": "true"
+        },
+        {
+            "name": "Gene type",
+            "cmdparam": "--gene_type",
+            "type": "number",
+            "default": "0.1,",
+            "range": {
+                "min": 0.0,
+                "max": 1.0
+            },
+            "help": "",
+            "required": null,
+            "add_option_in_cmd": "true"
+        },
+        {
+            "name": "out",
+            "type": "output,",
+            "default": "run_output",
+            "cmdparam": "--outname"
+        },
+        {
+            "name": "File",
+            "cmdparam": "--file",
+            "type": "file_textarea",
+            "range": "null",
+            "default": null,
+            "help": "",
+            "required": true,
+            "add_option_in_cmd": "true"
+        },
+        {
+            "name": "\"out\",",
+            "type": "output",
+            "cmdparam": "\"--outname\",",
+            "default": "run_output,",
+            "result_files": [
+                {
+                    "file_name": "${output}_plot_bar.png",
+                    "show_in_page": true
+                },
+                {
+                    "file_name": "${output}_plot_bar.svg",
+                    "show_in_page": false
+                },
+                {
+                    "file_name": "${output}_plot_bar.pdf",
+                    "show_in_page": false
+                }
+            ]
+        }
+    ]
+}

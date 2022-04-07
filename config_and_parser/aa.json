@@ -1,0 +1,222 @@
+{
+    "config_version": "0.1",
+    "program_type": "visualization",
+    "author": "zhengxinchang",
+    "email": "zhengxinchang@big.ac.cn",
+    "title": "Dot",
+    "description": "Dot plot",
+    "command": {
+        "cmd": "/xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_dot/plot_dot.r"
+    },
+    "resource": {
+        "is_submit_to_queue": false,
+        "ppn": 1,
+        "mem": 10
+    },
+    "reference": [
+        "https://cran.r-project.org/web/packages/ggplot2/index.html"
+    ],
+    "manual": "\nThe input file format example:\nx\ty #header\nA\t2\nB\t3\nC\t6\nD\t4\nE\t8\nF\t5\nG\t2\nH\t1\nI\t9\nJ\t8\n---------------------------------------------",
+    "options": [
+        {
+            "name": "File",
+            "cmdparam": "--file",
+            "type": "file_textarea",
+            "range": null,
+            "default": "/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_dot/example_input_bar.txt",
+            "help": "\"Dataset file name\"",
+            "required": true,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "out",
+            "type": "output",
+            "cmdparam": "--outdir",
+            "default": "run_output",
+            "result_files": [
+                {
+                    "file_name": "${output}_plot_bar.png",
+                    "show_in_page": true
+                },
+                {
+                    "file_name": "${output}_plot_bar.svg",
+                    "show_in_page": false
+                },
+                {
+                    "file_name": "${output}_plot_bar.pdf",
+                    "show_in_page": false
+                }
+            ]
+        },
+        {
+            "name": "Width",
+            "cmdparam": "--width",
+            "type": "number",
+            "default": 8.0,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Width of the plot",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Height",
+            "cmdparam": "--height",
+            "type": "number",
+            "default": 6.0,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Height of the plot",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Title",
+            "cmdparam": "--title",
+            "type": "string",
+            "range": null,
+            "help": "Main title",
+            "default": "\"\"",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Title Size",
+            "cmdparam": "--title_size",
+            "type": "number",
+            "default": null,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of main title",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Title of x axis",
+            "cmdparam": "--x_title",
+            "type": "string",
+            "range": null,
+            "help": "Title of x axis",
+            "default": "",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Title size of x axis",
+            "cmdparam": "--x_title_size",
+            "type": "number",
+            "default": null,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of axis title",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Text size of x axis",
+            "cmdparam": "--x_text_size",
+            "type": "number",
+            "default": null,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of x axis text",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Text angle of x axis",
+            "cmdparam": "--x_text_angle",
+            "type": "number",
+            "default": null,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of axis text",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Title of y axis",
+            "cmdparam": "--y_title",
+            "type": "string",
+            "range": null,
+            "help": "Title of x axis",
+            "default": "\"\"",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Title size of y axis",
+            "cmdparam": "--y_title_size",
+            "type": "number",
+            "default": 15.0,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of y axis title",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Text size of y axis",
+            "cmdparam": "--y_text_size",
+            "type": "number",
+            "default": null,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of y axis text",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Text size of y axis",
+            "cmdparam": "--y_text_size",
+            "type": "number",
+            "default": null,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Font size of y axis text",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Color",
+            "cmdparam": "--color",
+            "type": "color",
+            "range": null,
+            "help": "Dot color",
+            "default": "black",
+            "required": false,
+            "add_option_in_cmd": true
+        },
+        {
+            "name": "Dot size",
+            "cmdparam": "--dotsize",
+            "type": "number",
+            "default": 4.0,
+            "range": {
+                "min": null,
+                "max": null
+            },
+            "help": "Dot size",
+            "required": false,
+            "add_option_in_cmd": true
+        }
+    ]
+}

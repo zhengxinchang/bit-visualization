@@ -1,0 +1,66 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_Survival">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_Survival" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw Survival plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_survival/plot_survival.R </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="MAF file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_survival/example_input_survival.txt"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="10"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="fun" isacquire="1" cmdparam="--fun"  desc="an arbitrary function defining a transformation of the survival curve. argument: 'event' plots cumulative events" eletype="select"  isshow="1" whitespace="1" default="NULL">NULL=NULL,pct=pct,cumhaz=cumhaz,event=event</param>
+			<param name="conf.int" isacquire="1" cmdparam="--conf.int"  desc="logical value. If TRUE" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="pval" isacquire="1" cmdparam="--pval"  desc="logical value" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="risk.table" isacquire="1" cmdparam="--risk.table"  desc="TRUE or FALSE specifying whether to show or not the risk table. Default is FALSE." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="palette" isacquire="1" cmdparam="--palette"  desc="palette for plot" eletype="select"  isshow="1" whitespace="1" default="NULL">NULL=NULL,npg=npg,aaas=aaas,nejm=nejm,lancet=lancet,jama=jama,jco=jco,ucscgb=ucscgb,d3=d3,locuszoom=locuszoom,igv=igv,uchicago=uchicago,startrek=startrek,tron=tron,futurama=futurama,rickandmorty=rickandmorty,simpsons=simpsons</param>
+			<param name="surv.median.line" isacquire="1" cmdparam="--surv.median.line"  desc="character vector for drawing a horizontal/vertical line at median survival. Allowed values include one of c('none'" eletype="select"  isshow="1" whitespace="1" default="hv">NULL=NULL,hv=hv,h=h,v=v</param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_survival.png</param>
+			
+		</outputs>
+		<reference> https://cran.r-project.org/web/packages/survminer/index.html
+https://cran.r-project.org/web/packages/survival/index.html </reference>
+		<help> input format is :
+
+No  Time    Outcome  Group #fixed header
+1   2   1   Goup1
+2   5   1   Goup1
+3   8   1   Goup1
+4   9   1   Goup1
+5   9   0   Goup1
+6   10  1   Goup1
+7   13  1   Goup1
+8   13  1   Goup1
+9   15  0   Goup1
+10  18  1   Goup1
+11  20  1   Goup1
+12  23  0   Goup1
+13  2   1   Goup2
+14  2   1   Goup2
+15  3   1   Goup2
+16  5   1   Goup2
+17  6   1   Goup2
+18  6   1   Goup2
+19  8   1   Goup4
+20  9   1   Goup4
+21  10  1   Goup4
+22  14  0   Goup4 </help>
+	</module>
+</pipeline>
+
+

@@ -1,0 +1,60 @@
+
+
+<!-- for xml file can not contain these special characters,such as > & < ",use &gt; &amp; &lt; &quot; to replace when neccessay -->
+<pipeline name="Plot_heatmap3">
+	<!-- the module name must be the same as the pipeline name for the application -->
+	<!-- the email attribute is used to send notify email to you during deployment procedure -->
+	<module name="Plot_heatmap3" number="1" ismust="1" submittype="1" email="zhengxinchang@big.ac.cn">
+		<desc> This app draw heatmap plot for a given dataset. </desc>
+		<!-- you only need to fill the main script name -->
+		<class> /xtdisk/baoym_group/zhengxcngdc/softwares/miniconda3/envs/R36/bin/Rscript  /xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_heatmap/plot_heatmap.r </class>
+		<inputs>
+			<!-- eletype can be textbox/select/checkbox/file/textarea -->
+			<!-- isacqure means can not be empty,0 means allow empty -->
+			<!-- isshow means whether this item will show in submit page,1 means show -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+
+			<param name="file" isacquire="1" cmdparam="--file"  desc="Dataset file name" eletype="file"  isshow="1" whitespace="1" default="/xtdisk/baoym_group/zhengxcngdc/projects/biocloud/units/plot_heatmap/input_heatmap.txt"></param>
+			<param name="width" isacquire="1" cmdparam="--width"  desc="Width [inch]" eletype="textbox"  isshow="1" whitespace="1" default="8"></param>
+			<param name="height" isacquire="1" cmdparam="--height"  desc="Height [inch]" eletype="textbox"  isshow="1" whitespace="1" default="6"></param>
+			<param name="main" isacquire="1" cmdparam="--main"  desc="Main title" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="scale" isacquire="1" cmdparam="--scale"  desc="Character indicating if the values should be centered and scaled in either the row direction or the column direction" eletype="select"  isshow="1" whitespace="1" default="none">none=none,row=row,column=column</param>
+			<param name="clustering_method" isacquire="1" cmdparam="--clustering_method"  desc="The agglomeration method to be used. This should be (an unambiguous abbreviation of) one of 'ward.D'" eletype="select"  isshow="1" whitespace="1" default="complete">complete=complete,ward.D=ward.D,ward.D2=ward.D2,single=single,average=average,mcquitty=mcquitty,median=median,centroid=centroid</param>
+			<param name="cluster_rows" isacquire="1" cmdparam="--cluster_rows"  desc="Boolean values determining if columns should be clustered or hclust object" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="cluster_cols" isacquire="1" cmdparam="--cluster_cols"  desc="Boolean values determining if columns should be clustered or hclust object." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="clustering_distance_rows" isacquire="1" cmdparam="--clustering_distance_rows"  desc="Distance measure used in clustering rows. Possible values are correlation" eletype="select"  isshow="1" whitespace="1" default="correlation">correlation=correlation,euclidean=euclidean,maximum=maximum,manhattan=manhattan,canberra=canberra,binary=binary,minkowski=minkowski</param>
+			<param name="clustering_distance_cols" isacquire="1" cmdparam="--clustering_distance_cols"  desc="Distance measure used in clustering columns. Possible values the same as for clustering_distance_rows." eletype="select"  isshow="1" whitespace="1" default="correlation">correlation=correlation,euclidean=euclidean,maximum=maximum,manhattan=manhattan,canberra=canberra,binary=binary,minkowski=minkowski</param>
+			<param name="kmeans_k" isacquire="1" cmdparam="--kmeans_k"  desc="The number of kmeans ROW clusters to make" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="legend" isacquire="1" cmdparam="--legend"  desc="Logical to determine if legend should be drawn or not." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="show_rownames" isacquire="1" cmdparam="--show_rownames"  desc="boolean specifying if row names are be shown." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="show_colnames" isacquire="1" cmdparam="--show_colnames"  desc="boolean specifying if column names are be shown." eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="fontsize" isacquire="1" cmdparam="--fontsize"  desc="base fontsize for the plot" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="fontsize_row" isacquire="1" cmdparam="--fontsize_row"  desc="fontsize for rownames (Default: fontsize)" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="fontsize_col" isacquire="1" cmdparam="--fontsize_col"  desc="fontsize for colnames (Default: fontsize)" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="angle_col" isacquire="1" cmdparam="--angle_col"  desc="angle of the column labels" eletype="select"  isshow="1" whitespace="1" default="0">0=0,45=45,90=90,270=270,315=315</param>
+			<param name="display_numbers" isacquire="1" cmdparam="--display_numbers"  desc="logical determining if the numeric values are also printed to the cells. If this is a matrix (with same dimensions as original matrix)" eletype="select"  isshow="1" whitespace="1" default="TRUE">TRUE=TRUE,FALSE=FALSE</param>
+			<param name="number_color" isacquire="1" cmdparam="--number_color"  desc="color of the text" eletype="textbox"  isshow="1" whitespace="1" default="black"></param>
+			<param name="fontsize_number" isacquire="1" cmdparam="--fontsize_number"  desc="fontsize of the numbers displayed in cells" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="cellwidth" isacquire="1" cmdparam="--cellwidth"  desc="individual cell width in points. If left as NULL" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="cellheight" isacquire="1" cmdparam="--cellheight"  desc="individual cell width in points. If left as NULL" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="border_color" isacquire="1" cmdparam="--border_color"  desc="color of cell borders on heatmap" eletype="textbox"  isshow="1" whitespace="1" default="NULL"></param>
+			<param name="min_color" isacquire="1" cmdparam="--min_color"  desc="Color for minimal value" eletype="textbox"  isshow="1" whitespace="1" default="darkblue"></param>
+			<param name="middle_color" isacquire="1" cmdparam="--middle_color"  desc="Color for middle value" eletype="textbox"  isshow="1" whitespace="1" default="white"></param>
+			<param name="max_color" isacquire="1" cmdparam="--max_color"  desc="Color for maximal value" eletype="textbox"  isshow="1" whitespace="1" default="orangered"></param>
+
+		</inputs>
+		<outputs>
+			<!-- eletype can be textbox/checkbox -->
+			<!-- whitespace means whether allow white space between command param and item value,1 means allow white space -->
+			<!-- ispageshow means whether this item will show in the submit page,1 means show -->
+			<!-- isresultshow means whether this item value will  show in the result page after task  finish,1 means show -->
+			<param name="outdir" cmdparam="--outdir"  desc="" eletype="textbox"  isresultshow="1" whitespace="1" ispageshow="0">plot_heatmap.png</param>
+			
+		</outputs>
+		<reference> https://cran.r-project.org/web/packages/pheatmap/index.html
+https://cran.r-project.org/web/packages/ggsci/index.html </reference>
+		<help> The input file format is : matix, column and row names are string, values are number. </help>
+	</module>
+</pipeline>
+
+

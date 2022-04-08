@@ -160,7 +160,8 @@
             "help": "proportion words with 90 degree rotation",
             "name": "rotate percent",
             "range": {
-                "max": 1.0
+                "max": 1.0,
+                "min": 0.0
             },
             "required": true,
             "type": "number"
@@ -168,7 +169,7 @@
         {
             "add_option_in_cmd": true,
             "cmdparam": "--max.words",
-            "default": Infinity,
+            "default": "INF",
             "help": "Maximum number of words to be plotted. least frequent terms dropped",
             "name": "max words cutoff",
             "range": {

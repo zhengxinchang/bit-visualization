@@ -246,7 +246,7 @@ class ConfigGenerator():
                                 for x in rangerawList:
                                     if "MIN" in x.upper():
                                         if x.split(":")[1].strip().upper() == "-INF":
-                                          tmplateOption["range"]["min"]="-INF"
+                                            tmplateOption["range"]["min"]="-INF"
                                         elif x.split(":")[1].strip().upper() == "INF":
                                             self.errors.append("block '{}': min value should not be -infinity!".format(block.get('name')))
                                         else:
@@ -273,10 +273,20 @@ class ConfigGenerator():
                                                     tmplateOption["range"]["max"] = None
                                                 else:
                                                     tmplateOption["range"]["max"] = x.split(":")[1].strip().upper()
-                                try:
-                                    tmplateOption["default"] = float(block['default'])
-                                except:
-                                    tmplateOption["default"] =  None
+                                if block['default'].strip().upper() == "INF":
+                                     tmplateOption["default"]="INF"
+                                elif block['default'].strip().upper() == "-INF":
+                                     tmplateOption["default"]="-INF"                                     
+                                else:                                      
+                                
+                                    try:
+                                        tmplateOption["default"] = float(block['default'])
+                                    except:
+                                        
+                                        if "NONE" == block['default'].strip().upper():
+                                            tmplateOption["default"] =  None
+                                        else:
+                                            tmplateOption["default"] = block['default'].strip().upper()
 
                             if tmplateOption["type"] == "select":
                                 

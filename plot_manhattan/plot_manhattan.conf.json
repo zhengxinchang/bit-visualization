@@ -1,0 +1,269 @@
+{
+    "author": "zhengxinchang",
+    "command": {
+        "cmd": "/bit/newVersionUnits/plot_manhattan/plot_manhattan.r"
+    },
+    "config_version": "0.1",
+    "description": "Plot Manhattan",
+    "email": "zhengxinchang@big.ac.cn",
+    "manual": "\n\n\n\n",
+    "options": [
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--width",
+            "default": 10.0,
+            "help": "width of the canvas",
+            "name": "width",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--height",
+            "default": 6.0,
+            "help": "height of the canvas",
+            "name": "height",
+            "range": {
+                "max": 12.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "cmdparam": "--outdir",
+            "default": "run_output",
+            "name": "output",
+            "result_files": [
+                {
+                    "file_name": "${output}_plot_manhattan.png",
+                    "show_in_page": true
+                },
+                {
+                    "file_name": "${output}_plot_manhattan.svg",
+                    "show_in_page": false
+                },
+                {
+                    "file_name": "${output}_plot_manhattan.pdf",
+                    "show_in_page": false
+                }
+            ],
+            "type": "output"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--ylab",
+            "default": null,
+            "help": "label of y axis.",
+            "name": "ylabel",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--xlab",
+            "default": null,
+            "help": "label of x axis.",
+            "name": "xlabel",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--snpfile",
+            "default": "plot_manhattan.example.snp.txt",
+            "help": "snp data, a table with columns \"BP,\" \"CHR,\" \"P,\" and optionally, \"SNP.\" If you have X, Y, or MT chromosomes, be sure to renumber these 23, 24, 25, etc.",
+            "name": "SNP file",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--chrnamefile",
+            "default": "plot_manhattan.example.chrname.txt",
+            "help": "A character vector equal to the number of chromosomes specifying the chromosome labels (e.g., c(1:22, \"X\", \"Y\", \"MT\")).",
+            "name": "chr name file",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--highlightfile",
+            "default": "plot_manhattan.example.highlight.txt",
+            "help": "A character vector of SNPs in your dataset to highlight. These SNPs should all be in your dataset.",
+            "name": "highlight snp file",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--main",
+            "default": null,
+            "help": "Main title of the plot",
+            "name": "Main title",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--colora",
+            "default": "blue4",
+            "help": "One of color in manhattan plot. if specified, program will ignore the palette paramter. this paramter must co-occur with colorB.",
+            "name": "colorA",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--colorb",
+            "default": "orange3",
+            "help": "One of color in manhattan plot. if specified, program will ignore the palette paramter. this paramter must co-occur with colorA.",
+            "name": "colorB",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--palette",
+            "default": "npg",
+            "help": "palette used in the plot",
+            "name": "palette",
+            "range": [
+                {
+                    "Nature Publishing Group": "npg"
+                },
+                {
+                    "American Association for the Advancement of Science": "aaas"
+                },
+                {
+                    "The New England Journal of Medicine": "nejm"
+                },
+                {
+                    "Lancet Oncology": "lancet"
+                },
+                {
+                    "The Journal of the American Medical Association": "jama"
+                },
+                {
+                    "Journal of Clinical Oncology": "jco"
+                },
+                {
+                    "UCSC Genome Browser": "ucscgb"
+                },
+                {
+                    "D3.js": "d3"
+                },
+                {
+                    "LocusZoom": "locuszoom"
+                },
+                {
+                    "Integrative Genomics Viewer": "igv"
+                },
+                {
+                    "University of Chicago": "uchicago"
+                },
+                {
+                    "Star Trek": "startrek"
+                },
+                {
+                    "Tron Legacy": "tron"
+                },
+                {
+                    "TV show Futurama": "futurama"
+                },
+                {
+                    "TV show Rick and Morty": "rickandmorty"
+                },
+                {
+                    "TV show The Simpsons": "simpsons"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--logp",
+            "default": "TRUE",
+            "help": "If TRUE, the -log10 of the p-value is plotted. It isn't very useful to plot raw p-values, but plotting the raw value could be useful for other genome-wide plots, for example, peak heights, bayes factors, test statistics, other \"scores,\" etc.",
+            "name": "logp",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--annotop",
+            "default": "FALSE",
+            "help": "If TRUE, only annotates the top hit on each chromosome that is below the annotatePval threshold (or above if logp is FALSE). Note that this parameter will only working when annotate pvalue is provided.",
+            "name": "annotate top snp",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--annopval",
+            "default": null,
+            "help": "If set, SNPs below this p-value will be annotated on the plot. If logp is FALSE, SNPs above the specified value will be annotated.",
+            "name": "annotate p-cutoff",
+            "range": {
+                "max": 1.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "ymax",
+            "default": null,
+            "help": "max value of the y axis",
+            "name": "y max",
+            "range": {
+                "max": 100.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        }
+    ],
+    "program_type": "visualization",
+    "reference": [
+        "https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html",
+        "https://cran.r-project.org/web/packages/qqman/index.html",
+        "Turner, (2018). qqman: an R package for visualizing GWAS results using Q-Q and manhattan plots. Journal of Open Source Software, 3(25), 731, https://doi.org/10.21105/joss.00731."
+    ],
+    "resource": {
+        "is_submit_to_queue": false,
+        "mem": 10,
+        "ppn": 1
+    },
+    "title": "Manhattan"
+}

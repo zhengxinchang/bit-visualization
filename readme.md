@@ -15,3 +15,12 @@ Rscript plot_heatmap/plot_heatmap.r  --file  plot_heatmap/input_heatmap.txt   --
 Rscript plot_forestplot/plot_forestplot.r  --file  plot_forestplot/input_forest_plot.txt   --outdir ./
 Rscript plot_dot/plot_dot.r  --file  plot_dot/example_input_bar.txt   --outdir ./
 
+
+#seqlogo
+Rscript plot_wordcloud/plot_wordcloud.r  --file plot_wordcloud/plot_wordcloud.example.freq.txt  --outdir ./ --palette aaas --random.order FALSE --rot.per 0.9 --min.freq 1
+
+# word cloud
+Rscript plot_wordcloud/plot_wordcloud.r  --file plot_wordcloud/plot_wordcloud.example.freq.txt  --outdir ./ --palette aaas --random.order FALSE --rot.per 0.9 --min.freq 1
+
+# manhattan
+Rscript  plot_manhattan/plot_manhattan.r  --snpfile plot_manhattan/plot_manhattan.example.snp.txt   --palette aaas --logp TRUE --xlab bb --ylab xjlksdf --chrnamefile plot_manhattan/plot_manhattan.example.chrname.txt  --annotop TRUE --ymax 10 --highlightfile plot_manhattan/plot_manhattan.example.highlight.txt --annopval 0.05 --suggestiveline 2 --genomewideline 4 --height 6 --xrotate 2

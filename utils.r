@@ -7,7 +7,16 @@ bit.check.is.null <- function(x) {
     return(FALSE)
   }
   if (is.character(x)) {
-    return(toupper(x) == 'NULL')
+    
+    if (toupper(x) == 'NULL'){
+      return (TRUE)
+    }else if(toupper(x) == 'NONE'){
+      return (TRUE)
+    }else{
+      return(FALSE)
+    }
+    
+    
   } else{
     return(base::is.null(x))
   }
@@ -23,6 +32,8 @@ bit.convert.str2object <-function(s){
     if(s=="NA"){
       return(NA)
     }else if(toupper(s)=="NULL"){
+      return(NULL)
+    }else if (toupper(s)=="NONE"){
       return(NULL)
     }else if(toupper(s) == "TRUE"){
       return(TRUE)
@@ -45,8 +56,7 @@ bit.convert.str2object <-function(s){
       )
     }    
   }else{
-    print(s)
-    stop("Command line parameter must be a string!")
+    stop(paste0("Command line parameter",s, "must be a string!"))
   }
 }
 

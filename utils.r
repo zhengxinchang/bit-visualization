@@ -27,37 +27,41 @@ bit.check.is.null <- function(x) {
 #optparse 传入的所有内容都是字符串类型，在这里统一转换
 bit.convert.str2object <-function(s){
   
-  
-  if(class(s)=="character"){
-    if(s=="NA"){
-      return(NA)
-    }else if(toupper(s)=="NULL"){
-      return(NULL)
-    }else if (toupper(s)=="NONE"){
-      return(NULL)
-    }else if(toupper(s) == "TRUE"){
-      return(TRUE)
-    }else if(toupper(s)=="FALSE"){
-      return(FALSE)
-    }else{
-      
-      tryCatch(
-        {
-          a = as.numeric(s)
-          if(is.na(a)){
-            return(s)
-          }else{
-            return(a)
+  suppressWarnings({
+    if(class(s)=="character"){
+      if(s=="NA"){
+        return(NA)
+      }else if(toupper(s)=="NULL"){
+        return(NULL)
+      }else if (toupper(s)=="NONE"){
+        return(NULL)
+      }else if(toupper(s) == "TRUE"){
+        return(TRUE)
+      }else if(toupper(s)=="FALSE"){
+        return(FALSE)
+      }else{
+        
+        tryCatch(
+          {
+            a = as.numeric(s)
+            if(is.na(a)){
+              return(s)
+            }else{
+              return(a)
+            }
           }
-        }
-        ,error=function(){
-          return(s)
-        }
-      )
-    }    
-  }else{
-    stop(paste0("Command line parameter",s, "must be a string!"))
-  }
+          ,error=function(){
+            return(s)
+          }
+        )
+      }    
+    }else{
+      stop(paste0("Command line parameter",s, "must be a string!"))
+    }
+    
+    
+  })
+
 }
 
 
@@ -80,4 +84,5 @@ bit.palette_list_generation_function=list(
   "rickandmorty"= colorRampPalette(ggsci::pal_rickandmorty()(12)),
   "simpsons"= colorRampPalette(ggsci::pal_simpsons()(16))
 )	
+
 

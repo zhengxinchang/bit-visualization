@@ -1,0 +1,6 @@
+group	percent
+Male	25
+Female	25
+Child	40
+Old	5
+Newborn	5

@@ -1,0 +1,66 @@
+{
+    "author": "zhengxinchang", 
+    "command": {
+        "cmd": "/bit/newVersionUnits/plot_qq/plot_qq.r"
+    }, 
+    "config_version": "0.1", 
+    "description": "Plot qq plot", 
+    "email": "zhengxinchang@big.ac.cn", 
+    "manual": "The header of input data must be \"SNP\"\t\"CHR\"\t\"BP\"\tand \"P\"\n", 
+    "options": [
+        {
+            "add_option_in_cmd": true, 
+            "cmdparam": "--width", 
+            "default": 8.0, 
+            "help": "width of the canvas", 
+            "name": "width", 
+            "range": {
+                "max": 20.0, 
+                "min": 0.0
+            }, 
+            "required": true, 
+            "type": "number"
+        }, 
+        {
+            "add_option_in_cmd": true, 
+            "cmdparam": "--height", 
+            "default": 6.0, 
+            "help": "height of the canvas", 
+            "name": "height", 
+            "range": {
+                "max": 20.0, 
+                "min": 0.0
+            }, 
+            "required": true, 
+            "type": "number"
+        }, 
+        {
+            "add_option_in_cmd": true, 
+            "cmdparam": "--file", 
+            "default": "path to example file", 
+            "help": "datasets", 
+            "name": "file", 
+            "range": null, 
+            "required": true, 
+            "type": "file_textarea"
+        }, 
+        {
+            "add_option_in_cmd": true, 
+            "cmdparam": "--linecolor", 
+            "default": "red", 
+            "help": "help", 
+            "name": "line color", 
+            "range": null, 
+            "required": true, 
+            "type": "color"
+        }
+    ], 
+    "program_type": "visualization", 
+    "reference": [], 
+    "resource": {
+        "is_submit_to_queue": false, 
+        "mem": 10, 
+        "ppn": 1
+    }, 
+    "title": "Pie"
+}

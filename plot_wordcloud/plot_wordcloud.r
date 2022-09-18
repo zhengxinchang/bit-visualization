@@ -2,7 +2,96 @@ library(wordcloud)
 
 library(optparse)
 library(svglite)
-source("/bit/newVersionUnits/utils.r")
+
+# source("/bit/newVersionUnits/utils.r")
+
+
+library(ggsci)
+
+
+
+bit.check.is.null <- function(x) {
+  if (length(x) > 1) {
+    return(FALSE)
+  }
+  if (is.character(x)) {
+    
+    if (toupper(x) == 'NULL'){
+      return (TRUE)
+    }else if(toupper(x) == 'NONE'){
+      return (TRUE)
+    }else{
+      return(FALSE)
+    }
+    
+    
+  } else{
+    return(base::is.null(x))
+  }
+}
+
+
+
+#optparse 传入的所有内容都是字符串类型，在这里统一转换
+bit.convert.str2object <-function(s){
+  
+  suppressWarnings({
+    if(class(s)=="character"){
+      if(s=="NA"){
+        return(NA)
+      }else if(toupper(s)=="NULL"){
+        return(NULL)
+      }else if (toupper(s)=="NONE"){
+        return(NULL)
+      }else if(toupper(s) == "TRUE"){
+        return(TRUE)
+      }else if(toupper(s)=="FALSE"){
+        return(FALSE)
+      }else{
+        
+        tryCatch(
+          {
+            a = as.numeric(s)
+            if(is.na(a)){
+              return(s)
+            }else{
+              return(a)
+            }
+          }
+          ,error=function(){
+            return(s)
+          }
+        )
+      }    
+    }else{
+      stop(paste0("Command line parameter",s, "must be a string!"))
+    }
+    
+    
+  })
+  
+}
+
+
+
+bit.palette_list_generation_function=list(
+  "npg"= colorRampPalette(ggsci::pal_npg()(10)),
+  "aaas"= colorRampPalette(ggsci::pal_aaas()(10)),
+  "nejm"= colorRampPalette(ggsci::pal_nejm()(8)),
+  "lancet"= colorRampPalette(ggsci::pal_lancet()(9)),
+  "jama"= colorRampPalette(ggsci::pal_jama()(7)),
+  "jco"= colorRampPalette(ggsci::pal_jco()(10)),
+  "ucscgb"= colorRampPalette(ggsci::pal_aaas()(10)),
+  "d3"= colorRampPalette(ggsci::pal_d3()(10)),
+  "locuszoom"= colorRampPalette(ggsci::pal_locuszoom()(7)),
+  "igv"= colorRampPalette(ggsci::pal_igv()(51)),
+  "uchicago"= colorRampPalette(ggsci::pal_aaas()(9)),
+  "startrek"= colorRampPalette(ggsci::pal_startrek()(7)),
+  "tron"= colorRampPalette(ggsci::pal_tron()(7)),
+  "futurama"= colorRampPalette(ggsci::pal_futurama()(12)),
+  "rickandmorty"= colorRampPalette(ggsci::pal_rickandmorty()(12)),
+  "simpsons"= colorRampPalette(ggsci::pal_simpsons()(16))
+)	
 
 
 #%&% $META$ config_version=0.1 
@@ -192,49 +281,3 @@ png(paste0(fullplotname,".png"),width = as.numeric(opt$width) ,height = as.numer
 do.call(wordcloud::wordcloud,paramlist)
 dev.off()
 
-
-# 
-# wordcloud(w,wf,colors=bit.palette_list_generation_function[['ucscgb']] (length(w)),
-#           random.order=FALSE,min.freq=4,max.words = 300,rot.per=0.5,ordered.colors = TRUE)
-
-
-# 
-# 
-# library(tm)
-# 
-# color_palette<-bit.palette_list_generation_function[['aaas']] (6)
-# 
-# wordcloud::wordcloud("May our children and our children's children to a 
-# thousand generations, continue to enjoy the benefits conferred 
-# upon us by a united country, and have cause yet to rejoice under 
-# those glorious institutions bequeathed us by Washington and his 
-# compeers.",colors=color_palette,random.order=FALSE)
-# 
-# data(SOTU)
-# v <- tm_map(z,function(x)removeWords(tolower(x),stopwords()))
-# 
-# wordcloud(x, colors=brewer.pal(6,"Dark2"),random.order=FALSE,font='微软雅黑')
-# 
-# 
-# 
-# pdf("output_plot_wordcloud.pdf")
-# wordcloud(as.data.frame(wt)[,1],as.data.frame(wt)[,2],colors=bit.palette_list_generation_function[['ucscgb']] (nrow(wt)),
-#           random.order=FALSE,min.freq=4,max.words = 300,rot.per=0.5,ordered.colors = TRUE)
-# 
-# dev.off()
-# 
-# length(x)
-# 
-# 
-# x<-c("销售", "文章", "消费", "软件", "信用", "开发", "更多", "http", "一步", "描述", "是否", "最后", "的方法", "认为", "高端", "同的", "存在", "的用户", "评论", "基础", "深度", "的信", "代表", "复杂", "我的", "获得", "也是", "挖掘", "的工", "程中", "纪要", "一定", "主题", "单位", "广州", "们可", "来的", "科学家", "了解", "展示", "随机", "效果", "数学", "线性", "参会", "学的", "报名", "行了", "支持", "有效", "直接",  "在这", "对应", "当时", "的模", "价值", "基本", "新的", "目前", "营销", "论文", "不同的", "交易", "我们可", "指数", "方向", "获取", "记录", "都是", "定的", "每一", "过程中", "们可以", "出现", "学家", "知道", "第二", "策略", "美国", "考虑", "这样的", "业的", "传统", "希望", "的时候", "相对", "程度", "自己的", "说明", "进行了", "采用", "应的", "时代", "社交网", "网站", "这是", "人员", "在一", "届中国", "的预", "目标", "交网络", "是不", "服务", "的应", "者的", "觉得", "评价", "变化", "建立", "们可以 ", "更加", "的应用", "的模型", "看到", "风险", "应该", "的结", "知识", "竞争", "结合", "贝叶斯", "产生", "帮助", "测试", "理解", "组织", "经济", "他的", "具有", "出了", "容易", "成为", "用于", "准确", "的一个", "能力", "趋势", "银行", "性的", "的基", "商业", "讨论", "一下", "世界", "之间的", "人的", "包含", "数的", "最大", "系数", "是在", "里面", "专业", "成本", "计算机", "财经", "驾驶", "一次", "了一个", "工程", "我们的", "理论", "生成", "的信息", "的重", "研究中", "简历", "项目", "三个", "上海", "也可")
-# y <- sample(x,100,replace=T)
-# z<-SOTU[["1"]][["content"]]
-# 
-# w <- sample(LETTERS,100,replace = T)
-# wf <- sample(1:39,100,replace = T)
-# 
-# wt <- table(w)
-
-#write.table(y,"./plot_wordcloud/plot_wordcloud.example.txt",sep = "\t",row.names = F,col.names = F,quote = F)
-# dat_freq<- as.data.frame(table(dat))
-#write.table(dat_freq,"./plot_wordcloud/plot_wordcloud.example.freq.txt",sep = "\t",row.names = F,col.names = F,quote = F)

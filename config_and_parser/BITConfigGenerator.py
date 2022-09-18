@@ -1,3 +1,5 @@
+
+# -*- coding:UTF-8 -*-
 import json
 import argparse
 import logging
@@ -55,14 +57,14 @@ class ConfigGenerator():
     def get_template(self):
         
         template = {
-                    "config_version": None, #程序版本
-                    "program_type": None, #  visualization  analysis
+                    "config_version": None, #
+                    "program_type": None, # 
                     "author": None, 
                     "email": None,
                     "title": None,
                     "description": None,
                     "command": {
-                        "cmd": None # 不加参数的命令行部分
+                        "cmd": None # 
                     },
                     "resource": {
                         "is_submit_to_queue": None, # 如果是false 则在线运行不提交到队列
@@ -298,21 +300,6 @@ class ConfigGenerator():
                                     self.errors.append("Found error in '{}', reason {},please provide range like a:10;b:11".format(block.get('name'),str(e)))
 
                               
-                              
-                              
-                              
-                                # try:
-                                #     rangeraw = tmplateOption["range"]
-                                #     rangerawList = rangeraw.strip().split(";")
-                                #     tmplateOption["range"]=[]
-                                #     for x in rangerawList:
-                                #         tmplateOption["range"].append({
-                                #             x.split(":")[0].strip('"').strip("'"):x.split(":")[1].strip('"').strip("'")
-                                #         })    
-                                #                                       
-                                # 
-                                # except:
-                                #     self.errors.append("Found error in '{}',please provide range like a:10;b:11".format(block.get('name')))
 
                             if tmplateOption["type"] == "output":
                                 

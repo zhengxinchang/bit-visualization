@@ -10,7 +10,7 @@ library(optparse)
 #CONFIG:HELP=The input file format is : category   value. 
 #CONFIG:HELP=The value must be numeric.
 #CONFIG:HELP=The palettes are derived from package ggsci :
-#CONFIG:HELP=npg:   Nature Publishing Group
+#CONFIG:HELP=npg:  Nature Publishing Group
 #CONFIG:HELP=aaas:  American Association for the Advancement of Science
 #CONFIG:HELP=nejm:  The New England Journal of Medicine
 #CONFIG:HELP=lancet:  Lancet Oncology
@@ -71,8 +71,14 @@ palette_list_generation_function=list(
 )	
 
 
-dat<-read.table(opt$file,header = T)
+dat<-read.table(opt$file,header = T,sep="\t",stringsAsFactors = F)
+
+
+
 datname = names(dat)
+leveee = unique(dat[datname[1]])
+dat[,1] <- factor(dat[,1],levels = dat[,1])
+print(dat[,1])
 # x y 
 
 objplot<- ggplot(dat) + 

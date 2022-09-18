@@ -1,0 +1,269 @@
+{
+    "author": "zhengxinchang",
+    "command": {
+        "cmd": "/bit/newVersionUnits/plot_venn/plot_venn.r"
+    },
+    "config_version": "0.1",
+    "description": "Plot Venn diagram",
+    "email": "zhengxinchang@big.ac.cn",
+    "manual": "A\tB\tC\tD\tE #header\nj\tb\to\tm\tg\nu\te\tx\tj\tt\nr\tm\tx\tm\th\nd\tu\tv\tn\tx\nf\tp\tb\tm\to\nn\tj\to\tj\tq\nj\th\tr\tl\tq\ne\tg\tv\tg\ta\nh\tj\tg\tm\ta\nw\tg\to\tl\tk",
+    "options": [
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--width",
+            "default": 8.0,
+            "help": "width of the canvas",
+            "name": "width",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--height",
+            "default": 6.0,
+            "help": "height of the canvas",
+            "name": "height",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--palette",
+            "default": "npg",
+            "help": "palette used in the plot",
+            "name": "palette",
+            "range": [
+                {
+                    "Nature Publishing Group": "npg"
+                },
+                {
+                    "American Association for the Advancement of Science": "aaas"
+                },
+                {
+                    "The New England Journal of Medicine": "nejm"
+                },
+                {
+                    "Lancet Oncology": "lancet"
+                },
+                {
+                    "The Journal of the American Medical Association": "jama"
+                },
+                {
+                    "Journal of Clinical Oncology": "jco"
+                },
+                {
+                    "UCSC Genome Browser": "ucscgb"
+                },
+                {
+                    "D3.js": "d3"
+                },
+                {
+                    "LocusZoom": "locuszoom"
+                },
+                {
+                    "Integrative Genomics Viewer": "igv"
+                },
+                {
+                    "University of Chicago": "uchicago"
+                },
+                {
+                    "Star Trek": "startrek"
+                },
+                {
+                    "Tron Legacy": "tron"
+                },
+                {
+                    "TV show Futurama": "futurama"
+                },
+                {
+                    "TV show Rick and Morty": "rickandmorty"
+                },
+                {
+                    "TV show The Simpsons": "simpsons"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--file",
+            "default": "path to example file",
+            "help": "datasets",
+            "name": "File",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "na",
+            "default": null,
+            "help": "Missing value handling method: 'none', 'stop', 'remove'",
+            "name": "methods to NA",
+            "range": [
+                {
+                    "optionA": "a"
+                },
+                {
+                    "optionB": "b"
+                },
+                {
+                    "optionC": "c"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "transparent",
+            "default": 0.7,
+            "help": "Transparent value",
+            "name": "transparent",
+            "range": {
+                "max": 1.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--main",
+            "default": null,
+            "help": "Character giving the main title of the diagram",
+            "name": "main title",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--sub",
+            "default": null,
+            "help": "Character giving the subtitle of the diagram",
+            "name": "sub title",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--main.cex",
+            "default": 2.0,
+            "help": "Number giving the cex (font size) of the main title",
+            "name": "main title font size",
+            "range": {
+                "max": 20.0,
+                "min": 0.1
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--sub.cex",
+            "default": 2.0,
+            "help": "Number giving the cex (font size) of the subtitle",
+            "name": "sub title font size",
+            "range": {
+                "max": 20.0,
+                "min": 0.1
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--force.unique",
+            "default": "FALSE",
+            "help": "Logical specifying whether to use only unique elements in each item of the input list or use all elements. Defaults to FALSE",
+            "name": "force unique elements",
+            "range": [
+                {
+                    "FALSE": "FALSE"
+                },
+                {
+                    "TRUE": "TRUE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--print.mode",
+            "default": "raw",
+            "help": "Can be either 'raw' or 'percent'. This is the format that the numbers will be printed in. Can pass in a vector with the second element being printed under the first",
+            "name": "raw or percent",
+            "range": [
+                {
+                    "Raw": "raw"
+                },
+                {
+                    "Percent": "percent"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--sigdigs",
+            "default": 2.0,
+            "help": "If one of the elements in print.mode is 'percent', then this is how many significant digits will be kept",
+            "name": "percent digits",
+            "range": {
+                "max": 10.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--labelSize",
+            "default": 2.0,
+            "help": "label size",
+            "name": "label size",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--categoryLabelSize",
+            "default": 2.0,
+            "help": "Category label size",
+            "name": "category label size",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        }
+    ],
+    "program_type": "visualization",
+    "reference": [
+        "reference"
+    ],
+    "resource": {
+        "is_submit_to_queue": false,
+        "mem": 10,
+        "ppn": 1
+    },
+    "title": "Venn"
+}

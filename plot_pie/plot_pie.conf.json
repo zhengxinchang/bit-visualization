@@ -1,0 +1,168 @@
+{
+    "author": "zhengxinchang",
+    "command": {
+        "cmd": "/bit/newVersionUnits/plot_pie/plot_pie.r"
+    },
+    "config_version": "0.1",
+    "description": "Plot pie chart",
+    "email": "zhengxinchang@big.ac.cn",
+    "manual": "The header of input data must be 'group' and 'percent'\n",
+    "options": [
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--width",
+            "default": 8.0,
+            "help": "width of the canvas",
+            "name": "width",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--height",
+            "default": 6.0,
+            "help": "height of the canvas",
+            "name": "height",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--file",
+            "default": "path to example file",
+            "help": "datasets",
+            "name": "file",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--labpos",
+            "default": "in",
+            "help": "character specifying the position for labels.",
+            "name": "Label postion",
+            "range": [
+                {
+                    "outside": "out"
+                },
+                {
+                    "inside": "in"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--labadj",
+            "default": "NULL",
+            "help": "numeric value, used to adjust label position when Label postion is 'inside'",
+            "name": "inside labels adjust",
+            "range": {
+                "max": 20.0,
+                "min": -20.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--labcolor",
+            "default": "white",
+            "help": "help",
+            "name": "label color",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--linecolor",
+            "default": "black",
+            "help": "help",
+            "name": "line color",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--palette",
+            "default": "npg",
+            "help": "palette used in the plot",
+            "name": "palette",
+            "range": [
+                {
+                    "Nature Publishing Group": "npg"
+                },
+                {
+                    "American Association for the Advancement of Science": "aaas"
+                },
+                {
+                    "The New England Journal of Medicine": "nejm"
+                },
+                {
+                    "Lancet Oncology": "lancet"
+                },
+                {
+                    "The Journal of the American Medical Association": "jama"
+                },
+                {
+                    "Journal of Clinical Oncology": "jco"
+                },
+                {
+                    "UCSC Genome Browser": "ucscgb"
+                },
+                {
+                    "D3.js": "d3"
+                },
+                {
+                    "LocusZoom": "locuszoom"
+                },
+                {
+                    "Integrative Genomics Viewer": "igv"
+                },
+                {
+                    "University of Chicago": "uchicago"
+                },
+                {
+                    "Star Trek": "startrek"
+                },
+                {
+                    "Tron Legacy": "tron"
+                },
+                {
+                    "TV show Futurama": "futurama"
+                },
+                {
+                    "TV show Rick and Morty": "rickandmorty"
+                },
+                {
+                    "TV show The Simpsons": "simpsons"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        }
+    ],
+    "program_type": "visualization",
+    "reference": [
+        "https://cran.r-project.org/web/packages/ggpubr/index.html",
+        "https://rpkgs.datanovia.com/ggpubr/"
+    ],
+    "resource": {
+        "is_submit_to_queue": false,
+        "mem": 10,
+        "ppn": 1
+    },
+    "title": "Pie"
+}

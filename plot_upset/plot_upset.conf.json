@@ -1,0 +1,363 @@
+{
+    "author": "zhengxinchang",
+    "command": {
+        "cmd": "command"
+    },
+    "config_version": "0.1",
+    "description": "Upset plot",
+    "email": "zhengxinchang@big.ac.cn",
+    "manual": "Upset plot is uesed to visualize interactions between groups",
+    "options": [
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--width",
+            "default": 8.0,
+            "help": "width of the canvas",
+            "name": "width",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--height",
+            "default": 6.0,
+            "help": "height of the canvas",
+            "name": "height",
+            "range": {
+                "max": 20.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--file",
+            "default": "path to example file",
+            "help": "datasets",
+            "name": "File",
+            "range": null,
+            "required": true,
+            "type": "file_textarea"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--nsets",
+            "default": 5.0,
+            "help": "Number of sets to look at",
+            "name": "number sets",
+            "range": {
+                "max": "INF",
+                "min": 1.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--nintersects",
+            "default": 40.0,
+            "help": "Number of intersections to plot. If set to NA, all intersections will be plotted.",
+            "name": "number of intersections",
+            "range": {
+                "max": "",
+                "min": ""
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--keep.order",
+            "default": "FALSE",
+            "help": "Keep sets in the order entered using the sets parameter. The default is FALSE, which orders the sets by their sizes.",
+            "name": "keep order",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--matrix.color",
+            "default": "#F23FFF",
+            "help": "Color of the intersection points eg. gray or #F23FFF",
+            "name": "matrix color",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--main.bar.color",
+            "default": "#F23FFF",
+            "help": "Color of the main bar plot eg. darkblue or #F23FFF",
+            "name": "main bar color",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--mainbar.y.label",
+            "default": null,
+            "help": "The y-axis label of the intersection size bar plot",
+            "name": "y label",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--mainbar.y.max",
+            "default": "NULL",
+            "help": "help",
+            "name": "max y in main plot",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--sets.x.label",
+            "default": null,
+            "help": "The x-axis label of the set size bar plot",
+            "name": "x label in sets plot",
+            "range": null,
+            "required": true,
+            "type": "string"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--point.size",
+            "default": "NULL",
+            "help": "Size of points in matrix plot",
+            "name": "name",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--point.size",
+            "default": "NULL",
+            "help": "Size of points in matrix plot",
+            "name": "line size of main plot",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--att.pos",
+            "default": "bottom",
+            "help": "Position of attribute plot. If NULL or 'bottom' the plot will be at below UpSet plot. If 'top' it will be above UpSet plot",
+            "name": "Position of attribute plot",
+            "range": [
+                {
+                    "bottom": "bottom"
+                },
+                {
+                    "top": "top"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--att.color",
+            "default": "",
+            "help": "Color of attribute histogram bins or scatterplot points for unqueried data represented by main bars. Default set to color of main bars.",
+            "name": "Color of attribute histogram bins",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--order.by",
+            "default": "degree",
+            "help": "How the intersections in the matrix should be ordered by. Options include frequency (entered as 'freq'), degree, or both in any order.",
+            "name": "intersections ordered by",
+            "range": [
+                {
+                    "Frequency": "freq"
+                },
+                {
+                    "Degree": "degree"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--decreasing",
+            "default": "TRUE",
+            "help": "How the variables in order. by should be ordered. 'freq' is decreasing (greatest to least) and 'degree' is increasing (least to greatest)",
+            "name": "decreasing",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--show.numbers",
+            "default": "TRUE",
+            "help": "help",
+            "name": "show bar numbers",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--number.angles",
+            "default": "NULL",
+            "help": "The angle of the numbers atop the intersection size bars",
+            "name": "number angle",
+            "range": {
+                "max": 360.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--matrix.dot.alpha",
+            "default": "NULL",
+            "help": "Transparency of the empty intersections points in the matrix",
+            "name": "Transparency of the empty intersections",
+            "range": {
+                "max": 1.0,
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--command",
+            "default": "NULL",
+            "help": "Numeric, value to scale the text sizes, applies to all axis labels, tick labels, and numbers above bar plot",
+            "name": "scale of the text size",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--scale.sets",
+            "default": "NULL",
+            "help": "help",
+            "name": "scale of sets",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--sets.bar.color",
+            "default": "black",
+            "help": "Color of set size bar plot",
+            "name": "set size of bar plot",
+            "range": null,
+            "required": true,
+            "type": "color"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--set_size.angles",
+            "default": 0.0,
+            "help": "Numeric, angle to rotate the set size plot x-axis text",
+            "name": "set x text angle",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--command",
+            "default": "NULL",
+            "help": "If set_size.show is TRUE, adjust the size of the numbers",
+            "name": "name",
+            "range": {
+                "max": "INF",
+                "min": 0.0
+            },
+            "required": true,
+            "type": "number"
+        },
+        {
+            "add_option_in_cmd": true,
+            "cmdparam": "--command",
+            "default": "TRUE",
+            "help": "Logical, display the set sizes on the set size bar chart",
+            "name": "show set size",
+            "range": [
+                {
+                    "TRUE": "TRUE"
+                },
+                {
+                    "FALSE": "FALSE"
+                }
+            ],
+            "required": true,
+            "type": "select"
+        }
+    ],
+    "program_type": "visualization",
+    "reference": [
+        "https://cran.r-project.org/web/packages/UpSetR/"
+    ],
+    "resource": {
+        "is_submit_to_queue": false,
+        "mem": 10,
+        "ppn": 1
+    },
+    "title": "Upset"
+}
